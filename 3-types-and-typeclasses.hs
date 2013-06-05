@@ -1,3 +1,6 @@
+main :: IO ()
+main = undefined
+
 {-
  - For this exercise, we are dealing with a type for colours of the rainbow
  - The typeclass is defined here, and note its English spelling.
@@ -19,10 +22,10 @@ data Colour = Red | Orange | Yellow | Green | Blue | Indigo | Violet
  - The Colour typeclass is of type Ord
  - What is the "first" (or least) colour
  -}
-firstColour = undefined
+firstColour = minBound :: Colour
 
 -- List the colours in reverse order
-reverseColourOrder = undefined
+reverseColourOrder = reverse [minBound .. maxBound] :: [Colour]
 
 {-
  - Mix two colours together, to produce the average value of the two.
@@ -31,4 +34,4 @@ reverseColourOrder = undefined
  - For example: paintMix Green Violet = Indigo
  - Hint: Integer division can be performed with the quot function: quot 7 2 = 3
  -}
-paintMix c1 c2 = undefined
+paintMix c1 c2 = (toEnum (quot (fromEnum c1 + fromEnum c2 + 1) 2)) :: Colour
