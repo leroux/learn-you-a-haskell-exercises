@@ -61,7 +61,5 @@ piCalc tolerance = piCalc' 1 0.0 tolerance 0
 piCalc' :: (Ord a, Fractional a, Integral b) => a -> a -> a -> b -> (a, b)
 piCalc' curDenom lastPi tolerance count = if abs (lastPi - newPi) < tolerance
                                             then (newPi, count)
-                                            else piCalc' curDenom newPi tolerance (count + 1)
-                                            where numer = (-1) ^ count
-                                                  newPi = lastPi + (4 * numer / (curDenom + 2))
-
+                                            else piCalc' (stepReverseSign curDenom 2) newPi tolerance (count + 1)
+                                            where newPi = lastPi + (4 / curDenom)
